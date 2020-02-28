@@ -15,8 +15,11 @@
 
 import time
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
 
 browser_stay_time = 5
+# normal mode
 chrome_driver = webdriver.Chrome(r'webdriver\chromedriver.80.exe')
 chrome_driver.get('http://www.cueb.edu.cn')
 time.sleep(browser_stay_time)
@@ -27,3 +30,22 @@ ie_driver = webdriver.Ie(r'webdriver\IEDriverServer.3.141.exe')
 ie_driver.get('http://www.cueb.edu.cn')
 time.sleep(browser_stay_time)
 ie_driver.close()
+
+
+# selenium no more support phantomjs
+# phantomjs_driver = webdriver.PhantomJS(r'D:\extpath\selenium\webdriver\phantomjs-2.1.1-windows\bin\phantomjs.exe')
+# phantomjs_driver.get('http://www.cueb.edu.cn')
+# time.sleep(browser_stay_time)
+# print(phantomjs_driver.page_source)
+# phantomjs_driver.close()
+
+
+# headless mode
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-gpu')
+chrome_driver = webdriver.Chrome(executable_path=r'webdriver\chromedriver.80.exe', options=chrome_options)
+chrome_driver.get('http://www.cueb.edu.cn')
+time.sleep(browser_stay_time)
+print(chrome_driver.page_source)
+chrome_driver.close()
